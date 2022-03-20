@@ -22,7 +22,7 @@
             <h3> Withdraw ATM </h3>
             <div>
                 <label> How Much?  </label>
-                <input type="number" name="withdraw" class="form-control" value="0" required>
+                <input type="text" name="withdraw" class="form-control" value="0" required>
             </div>
             <input style="margin-top: 20px" type="submit" name="withdraw" class="btn btn-danger" value="Withdraw"/>
         </form>
@@ -32,7 +32,7 @@
             <h3> Deposit ATM </h3>
             <div>
                 <label> How Much? </label>
-                <input type="number" name="deposit" class="form-control" value="0" required>
+                <input type="text" name="deposit" class="form-control" value="0" required>
             </div>
             <input style="margin-top: 20px" type="submit" name="deposit" class="btn btn-danger" value="Deposit"/>
         </form> 

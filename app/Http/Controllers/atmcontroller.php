@@ -81,16 +81,15 @@ class atmcontroller extends Controller
             'withdraw' => 'required'
         ]);
 
-        $withdraw = (integer) $request->input('withdraw');
+        $withdraw = (int)$request->input('withdraw');
         $type = 'Withdraw';
 
-        $balance = (int)DB::table('atmuser')->where('name', '=' ,'henz')->value('balance');
-        $username = DB::table('atmuser')->where('name', '=' ,'henz')->pluck('username');
-
+        $balance = DB::table('atmuser')->where('name', '=' ,$this->uniname)->value('balance');
+        $username = DB::table('atmuser')->where('name', '=' ,$this->uniname)->pluck('username');
 
             $newbalance =  $balance - $withdraw;
-            DB::table('atmuser')->where('name', 'henz')->update(array('balance' => $newbalance));
-            $data=array('name'=>'henz',"username"=>$username,"type"=>$type,"transacmoney"=>$withdraw);
+            DB::table('atmuser')->where('name', $this->uniname)->update(array('balance' => $newbalance));
+            $data=array('name'=>$this->uniname,"username"=>$username,"type"=>$type,"transacmoney"=>$withdraw);
             DB::table('history')->insert($data);
 
     }
@@ -99,6 +98,17 @@ class atmcontroller extends Controller
         $this->validate($request, [
             'deposit' => 'required'
         ]);
+
+        $deposit = (int)$request->input('deposit');
+        $type = 'Deposit';
+
+        $balance = DB::table('atmuser')->where('name', '=' ,$this->uniname)->value('balance');
+        $username = DB::table('atmuser')->where('name', '=' ,$this->uniname)->pluck('username');
+
+            $newbalance =  $balance - $deposit;
+            DB::table('atmuser')->where('name', $this->uniname)->update(array('balance' => $newbalance));
+            $data=array('name'=>$this->uniname,"username"=>$username,"type"=>$type,"transacmoney"=>$deposit);
+            DB::table('history')->insert($data);
     }
 
 
