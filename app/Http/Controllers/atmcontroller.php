@@ -41,7 +41,7 @@ class atmcontroller extends Controller
      $user = DB::table('atmuser')->where('username', '=', $username)->where('password', '=', $password)->get();
      $usercount = $user->count();
      $name = DB::table('atmuser')->where('username', '=' ,$username)->where('password', '=', $password)->pluck('name');
-     $this->uniname = $name;
+     $this->uniname = DB::table('atmuser')->where('username', '=' ,$username)->where('password', '=', $password)->pluck('name');
      $balance = DB::table('atmuser')->where('username', '=' ,$username)->where('password', '=', $password)->pluck('balance');
 
         if (!$usercount == 0) {
