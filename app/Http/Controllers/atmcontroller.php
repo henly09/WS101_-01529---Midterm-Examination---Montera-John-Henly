@@ -10,7 +10,7 @@ use DB;
 class atmcontroller extends Controller
 {
 
-    protected $uniname;
+    protected $uniname ="";
 
     public function login(){
         return view('login');
@@ -41,7 +41,7 @@ class atmcontroller extends Controller
      $user = DB::table('atmuser')->where('username', '=', $username)->where('password', '=', $password)->get();
      $usercount = $user->count();
      $name = DB::table('atmuser')->where('username', '=' ,$username)->where('password', '=', $password)->pluck('name');
-     $this->uniname = $name;
+     $this->uniname = strval($name);
      $balance = DB::table('atmuser')->where('username', '=' ,$username)->where('password', '=', $password)->pluck('balance');
 
         if (!$usercount == 0) {
@@ -92,6 +92,8 @@ class atmcontroller extends Controller
             $data=array('name'=>$this->uniname,"username"=>$username,"type"=>$type,"transacmoney"=>$withdraw);
             DB::table('history')->insert($data);
 
+            return view('login');
+
     }
 
     public function deposit(Request $request){
@@ -109,6 +111,8 @@ class atmcontroller extends Controller
             DB::table('atmuser')->where('name', $this->uniname)->update(array('balance' => $newbalance));
             $data=array('name'=>$this->uniname,"username"=>$username,"type"=>$type,"transacmoney"=>$deposit);
             DB::table('history')->insert($data);
+
+            return view('login');
     }
 
 
