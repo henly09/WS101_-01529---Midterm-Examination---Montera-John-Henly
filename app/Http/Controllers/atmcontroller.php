@@ -9,6 +9,9 @@ use DB;
 
 class atmcontroller extends Controller
 {
+
+    protected $uniname;
+
     public function login(){
         return view('login');
     }
@@ -38,6 +41,7 @@ class atmcontroller extends Controller
      $user = DB::table('atmuser')->where('username', '=', $username)->where('password', '=', $password)->get();
      $usercount = $user->count();
      $name = DB::table('atmuser')->where('username', '=' ,$username)->where('password', '=', $password)->pluck('name');
+     $this->uniname = $name;
      $balance = DB::table('atmuser')->where('username', '=' ,$username)->where('password', '=', $password)->pluck('balance');
 
         if (!$usercount == 0) {
@@ -77,17 +81,18 @@ class atmcontroller extends Controller
             'withdraw' => 'required'
         ]);
 
-        $username = $request->username;
-        $password = $request->password;
-        $withdraw = $request->input('withdraw');
-        $type = 'withdraw';
+        $withdraw = (integer) $request->input('withdraw');
+        $type = 'Withdraw';
 
-        $balance = DB::table('atmuser')->where('username', '=' ,$username)->where('password', '=', $password)->pluck('balance');
+        $balance = (int)DB::table('atmuser')->where('name', '=' ,'henz')->value('balance');
+        $username = DB::table('atmuser')->where('name', '=' ,'henz')->pluck('username');
 
-            $newbalance = $balance - $withdraw;
-            DB::table('atmuser')->where('username', $username)->update(array('balance' => $newbalance));
-            $data=array('name'=>$name,"username"=>$username,"type"=>$password,"transacmoney"=>$newbalance);
+
+            $newbalance =  $balance - $withdraw;
+            DB::table('atmuser')->where('name', 'henz')->update(array('balance' => $newbalance));
+            $data=array('name'=>'henz',"username"=>$username,"type"=>$type,"transacmoney"=>$withdraw);
             DB::table('history')->insert($data);
+
     }
 
     public function deposit(Request $request){

@@ -26,7 +26,7 @@
             </div>
             <input style="margin-top: 20px" type="submit" name="withdraw" class="btn btn-danger" value="Withdraw"/>
         </form>
-
+    
         <form class="" action="{{ route('deposit') }}" method="get">
             @csrf 
             <h3> Deposit ATM </h3>
@@ -35,7 +35,7 @@
                 <input type="number" name="deposit" class="form-control" value="0" required>
             </div>
             <input style="margin-top: 20px" type="submit" name="deposit" class="btn btn-danger" value="Deposit"/>
-        </form>
+        </form> 
 </body>
 </center>
 </html>

@@ -37,7 +37,7 @@ class historySeeder extends Seeder
         DB::table('history')->insert([
             'name' => 'gaya',
             'username' => '123456',
-            'type' => 'DEposit',
+            'type' => 'Deposit',
             'transacmoney' => 3000
         ]);
     }
