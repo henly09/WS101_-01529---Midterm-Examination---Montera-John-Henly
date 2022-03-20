@@ -18,28 +18,28 @@ class atmuserSeeder extends Seeder
             'name' => 'henz',
             'username' => 'awtsgege',
             'password' => '123123',
-            'balance' => 3000
+            'balance' => 1234121
         ]);
 
         DB::table('atmuser')->insert([
             'name' => 'zef',
             'username' => 'qwerty',
             'password' => '321321',
-            'balance' => 3000
+            'balance' => 3012500
         ]);
 
         DB::table('atmuser')->insert([
             'name' => 'ako',
             'username' => 'asdasd',
             'password' => 'zxczxc',
-            'balance' => 3000
+            'balance' => 3001240
         ]);
 
         DB::table('atmuser')->insert([
             'name' => 'gaya',
             'username' => '123456',
             'password' => 'qwertyasd',
-            'balance' => 3000
+            'balance' => 30613600
         ]);
     }
 }
