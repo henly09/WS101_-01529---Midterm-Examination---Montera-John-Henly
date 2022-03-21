@@ -17,25 +17,24 @@
         <h1 style="margin-top: 100px"> TRANSACTION </h1>
         <h1> Name: {{ $name }} </h1>
         <h1> Balance: PHP {{ $balance }} </h1>  
+        <h1> </h1>
         <form class="" action="{{ route('withdraw') }}" method="get">
             @csrf 
-            <h3> Withdraw ATM </h3>
             <div>
-                <label> How Much?  </label>
-                <input type="text" name="withdraw" class="form-control" value="0" required>
+                <label> Withdraw: </label>
+                <input type="number" name="withdraw" class="form-control" value="0" required>
             </div>
-            <input style="margin-top: 20px" type="submit" name="withdraw" class="btn btn-danger" value="Withdraw"/>
+            <input style="margin-top: 20px;" type="submit" name="login" class="btn btn-danger" value="Withdraw"/>
         </form>
-    
+        <h1> </h1>
         <form class="" action="{{ route('deposit') }}" method="get">
             @csrf 
-            <h3> Deposit ATM </h3>
             <div>
-                <label> How Much? </label>
-                <input type="text" name="deposit" class="form-control" value="0" required>
+                <label> Deposit: </label>
+                <input type="number" name="deposit" class="form-control" value="0" required>
             </div>
-            <input style="margin-top: 20px" type="submit" name="deposit" class="btn btn-danger" value="Deposit"/>
-        </form> 
+            <input style="margin-top: 20px;" type="submit" name="login" class="btn btn-danger" value="Deposit"/>
+        </form>
 </body>
 </center>
 </html>

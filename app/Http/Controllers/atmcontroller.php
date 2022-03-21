@@ -6,6 +6,7 @@ use \Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use DB;
+use Carbon\Carbon;
 
 class atmcontroller extends Controller
 {
@@ -64,11 +65,11 @@ class atmcontroller extends Controller
         $name = $request->input('name');
         $username = $request->input('username');
         $password = $request->input('password');
-        $type = 'Deposit';
+        $type = 'Newly SignedUp';
         $balance = 3000;
-        $data=array('name'=>$name,"username"=>$username,"password"=>$password,"balance"=>$balance);
+        $data=array('name'=>$name,"username"=>$username,"password"=>$password,"balance"=>$balance,"created_at" =>  \Carbon\Carbon::now(),"updated_at" => \Carbon\Carbon::now());
         DB::table('atmuser')->insert($data);
-        $data2=array('name'=>$name,"username"=>$username,"type"=>$type,"transacmoney"=>$balance);
+        $data2=array('name'=>$name,"username"=>$username,"type"=>$type,"transacmoney"=>$balance,"created_at" =>  \Carbon\Carbon::now(),"updated_at" => \Carbon\Carbon::now());
         DB::table('history')->insert($data2);
 
         return view('login');
@@ -89,7 +90,7 @@ class atmcontroller extends Controller
 
             $newbalance =  $balance - $withdraw;
             DB::table('atmuser')->where('name', $this->uniname)->update(array('balance' => $newbalance));
-            $data=array('name'=>$this->uniname,"username"=>$username,"type"=>$type,"transacmoney"=>$withdraw);
+            $data=array('name'=>$this->uniname,"username"=>$username,"type"=>$type,"transacmoney"=>$withdraw,"created_at" =>  \Carbon\Carbon::now(),"updated_at" => \Carbon\Carbon::now());
             DB::table('history')->insert($data);
 
             return view('login');
@@ -109,7 +110,7 @@ class atmcontroller extends Controller
 
             $newbalance =  $balance - $deposit;
             DB::table('atmuser')->where('name', $this->uniname)->update(array('balance' => $newbalance));
-            $data=array('name'=>$this->uniname,"username"=>$username,"type"=>$type,"transacmoney"=>$deposit);
+            $data=array('name'=>$this->uniname,"username"=>$username,"type"=>$type,"transacmoney"=>$deposit,"created_at" =>  \Carbon\Carbon::now(),"updated_at" => \Carbon\Carbon::now());
             DB::table('history')->insert($data);
 
             return view('login');
