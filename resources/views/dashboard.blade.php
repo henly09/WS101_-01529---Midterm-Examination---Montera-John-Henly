@@ -14,7 +14,7 @@
 </center>
 <center>
 <body style="background-color:#e8bee3">
-        <h1 style="margin-top: 100px"> DASHBOARD </h1>
+        <h1 style="margin-top: 50px"> DASHBOARD </h1>
         <h1> </h1>
         <h1> Transaction History </h1>
 @foreach($history as $key => $data)
