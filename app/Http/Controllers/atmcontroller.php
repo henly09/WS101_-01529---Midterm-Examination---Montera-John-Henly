@@ -17,7 +17,10 @@ class atmcontroller extends Controller
     }
 
     public function dashboard(){
-        return view('dashboard');
+        $name = session('uniname');
+        $history = DB::table('history')->where('name', '=' ,$name)->get();
+        $atmuser = DB::table('atmuser')->where('name', '=' ,$name)->get();
+        return view('dashboard', ['history' => $history,'atmuser' => $atmuser]);
     }
 
     public function signup(){
