@@ -19,8 +19,10 @@ Route::get('/', [atmcontroller::class, 'login'])->name('login'); // login
 Route::get('/signup', [atmcontroller::class, 'signup'])->name('signup'); //signup page 
 Route::get('/transaction', [atmcontroller::class, 'transaction'])->name('transaction'); //transaction
 
-Route::get('/dashboard', function () { $history = DB::table('history')->get();
-    return view('dashboard', ['history' => $history]);
+Route::get('/dashboard', function () { 
+    $history = DB::table('history')->get();
+    $atmuser = DB::table('atmuser')->get();
+    return view('dashboard', ['history' => $history,'atmuser' => $atmuser]);
 })->name('dashboard');
 
 Route::get('/log', [atmcontroller::class, 'loginvalidation'])->name('loginvalidation'); // login validation
