@@ -25,7 +25,9 @@ class atmcontroller extends Controller
     }
 
     public function transaction(){
-        return view('transaction');
+        $name = session('uniname');
+        $balance = DB::table('atmuser')->where('name', '=' ,$name)->value('balance');
+        return view('transaction',['name' => $name , 'balance' => $balance]);
     }
 
     public function loginvalidation(Request $request){
