@@ -25,6 +25,7 @@
             </div>
             <input style="margin-top: 20px" type="submit" name="signup" class="btn btn-danger" value="Sign Up"/>
         </form>
+        <h1> </h1>
         <a> Already have an Account <a href="{{ route('login')}}"> Login Already! </a></a>
 </body>
 </center>
