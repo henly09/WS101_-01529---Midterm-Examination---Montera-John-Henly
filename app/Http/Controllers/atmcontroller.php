@@ -45,11 +45,11 @@ class atmcontroller extends Controller
 
      $user = DB::table('atmuser')->where('username', '=', $username)->where('password', '=', $password)->get();
      $usercount = $user->count();
-     $name = DB::table('atmuser')->where('username', '=' ,$username)->where('password', '=', $password)->pluck('name');
+     $name = DB::table('atmuser')->select('name')->where('username', '=' ,$username)->where('password', '=', $password)->pluck('name')->first();
 
      $request->session()->put('uniname', $name);
      
-     $balance = DB::table('atmuser')->where('username', '=' ,$username)->where('password', '=', $password)->pluck('balance');
+     $balance = DB::table('atmuser')->where('username', '=' ,$username)->where('password', '=', $password)->pluck('balance')->first();
 
         if (!$usercount == 0) {
             return view('transaction', ['name' => $name , 'balance' => $balance]);
@@ -106,6 +106,7 @@ class atmcontroller extends Controller
     }
 
     public function deposit(Request $request){
+        
         $this->validate($request, [
             'deposit' => 'required'
         ]);
